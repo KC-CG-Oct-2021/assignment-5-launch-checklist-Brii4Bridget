@@ -1,5 +1,6 @@
 // Write your helper functions here!
-require('isomorphic-fetch');
+try{require('isomorphic-fetch');
+} catch(error){};
 
 // RETRIEVING AND ADDING DESTINATION INFORMATION - Mission Target div //                 
 
@@ -38,18 +39,18 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     if (validateInput(pilot)==="Empty" || (validateInput(copilot)==="Empty" ) || (validateInput(fuelLevel)==="Empty" ) || (validateInput(cargoLevel)==="Empty" )) {
-        alert ("All fields are required!");
+        showAlert ("All fields are required!");
     }
 
     if (validateInput(pilot)==="Is a Number" || (validateInput(copilot)==="Is a Number" ) || (validateInput(fuelLevel)==="Not a Number" ) || (validateInput(cargoLevel)==="Not a Number" )) {
-        alert ("Make sure to enter valid information for each field!");
+        showAlert ("Make sure to enter valid information for each field!");
     } 
 
     document.getElementById ("pilotStatus").innerHTML =  `Pilot ${pilot} is ready for launch`;
     document.getElementById ("copilotStatus").innerHTML =  `Co-pilot ${copilot} is ready for launch`;
 
     if (fuelLevel < 10000 && cargoLevel <= 10000) {
-        list.style.visibility = "hidden";
+        list.style.visibility = "visible";
         document.getElementById ("fuelStatus").innerHTML = "Fuel Level too low for launch";
         document.getElementById ("cargoStatus").innerHTML = "Cargo mass low enough for launch";  
         document.getElementById ("launchStatus").innerHTML = "Shuttle Not Ready for Launch";
@@ -65,11 +66,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     } 
    
     if (fuelLevel >= 10000 && cargoLevel <= 10000) {
-        list.style.visibility = "hidden";
+        list.style.visibility = "visible";
         document.getElementById ("launchStatus").innerHTML = "Shuttle is Ready for Launch";
         document.getElementById ("fuelStatus").innerHTML = "Fuel level high enough for launch";
         document.getElementById ("cargoStatus").innerHTML = "Cargo mass low enough for launch"; 
         document.getElementById ("launchStatus").style.color ='rgb(65, 159, 106)';  
+    }
+
+    if (document.getElementById ("launchStatus").innerHTML.contains("Not")) {
+        showAlert();
     }
 }
 
@@ -87,6 +92,11 @@ async function myFetch() {
 function pickPlanet(planets) {
     let index = Math.floor (Math.random () * planets.length);
     return planets [index];
+}
+
+function showAlert(message) {
+    try{ window.alert(message);
+} catch(error){};
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
