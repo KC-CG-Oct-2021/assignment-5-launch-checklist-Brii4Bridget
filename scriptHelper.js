@@ -49,23 +49,23 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     document.getElementById ("copilotStatus").innerHTML =  `Co-pilot ${copilot} is ready for launch`;
 
     if (fuelLevel < 10000 && cargoLevel <= 10000) {
-        list.style.visibility = "visible";
+        list.style.visibility = "hidden";
         document.getElementById ("fuelStatus").innerHTML = "Fuel Level too low for launch";
         document.getElementById ("cargoStatus").innerHTML = "Cargo mass low enough for launch";  
-        document.getElementById ("launchStatus").innerHTML = "Shuttle Not ready for launch";
+        document.getElementById ("launchStatus").innerHTML = "Shuttle Not Ready for launch";
         document.getElementById ("launchStatus").style.color = 'rgb(199, 37, 78)';
     } 
     
     if (cargoLevel > 10000 && fuelLevel >= 10000 ) {
-        list.style.visibility = "visible";
+        list.style.visibility = "hidden";
         document.getElementById ("cargoStatus").innerHTML = "Cargo mass too heavy for launch";
         document.getElementById ("fuelStatus").innerHTML = "Fuel level high enough for launch";
-        document.getElementById ("launchStatus").innerHTML = "Shuttle Not ready for launch";
+        document.getElementById ("launchStatus").innerHTML = "Shuttle Not Ready for launch";
         document.getElementById ("launchStatus").style.color = 'rgb(199, 37, 78)';
     } 
    
     if (fuelLevel >= 10000 && cargoLevel <= 10000) {
-        list.style.visibility = "hidden";
+        list.style.visibility = "visible";
         document.getElementById ("launchStatus").innerHTML = "Shuttle is Ready for Launch";
         document.getElementById ("fuelStatus").innerHTML = "Fuel level high enough for launch";
         document.getElementById ("cargoStatus").innerHTML = "Cargo mass low enough for launch"; 
