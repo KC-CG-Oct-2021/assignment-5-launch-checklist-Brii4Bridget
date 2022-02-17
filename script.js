@@ -1,7 +1,7 @@
 // Write your JavaScript code here!
 
 window.addEventListener("load", function() {
-    document.getElementById("launchStatus").style.visibility = 'hidden';
+    document.getElementById("faultyItems").style.visibility = 'hidden';
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()

@@ -73,7 +73,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         document.getElementById ("launchStatus").style.color ='rgb(65, 159, 106)';  
     }
 
-    if (document.getElementById ("launchStatus").innerHTML.contains("Not")) {
+    if (document.getElementById ("launchStatus").innerHTML.includes("Not")) {
         showAlert();
     }
 }
